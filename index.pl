@@ -19,6 +19,7 @@ $oidYellow = "1.3.6.1.2.1.43.11.1.1.9.1.3";
 $oidHostname = "1.3.6.1.2.1.1.5.0";
 $oidSerial ="1.3.6.1.2.1.43.5.1.1.17.1";
 $oidModell ="1.3.6.1.2.1.25.3.2.1.3.1";
+$oidStatus ="1.3.6.1.2.1.43.16.5.1.2.1.1";
 
 ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
 $year = $year+1900;
@@ -48,6 +49,8 @@ $resultatSerial = `snmpwalk -v$versjon -Ovq -c $community $IP $oidSerial`;
 
 $resultatModell = `snmpwalk -v$versjon -Ovq -c $community $IP $oidModell`;
 
+$resultatStatus = `snmpwalk -v$versjon -Ovq -c $community $IP $oidStatus`;
+
 
 print qq {
 
@@ -57,7 +60,8 @@ Serial: $resultatSerial <br>
 Cyan: $resultatCyan % <br>
 Black: $resultatBlack % <br>
 Magenta: $resultatMagenta % <br>
-Yellow: $resultatYellow % <br><br><br>
+Yellow: $resultatYellow % <br>
+Status: resultatStatus <br>
 };
 
 print qq {
